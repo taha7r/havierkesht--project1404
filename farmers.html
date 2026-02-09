@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لیست کشاورزان - سامانه هاویرکشت</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* استایل اختصاصی برای جدول که با داشبورد ست شود */
+        .table-section { margin-top: 30px; padding: 0 10px; }
+        .table-card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { text-align: right; padding: 12px; background: #f8f9fa; color: #777; font-weight: 500; border-bottom: 2px solid #eee; }
+        td { padding: 15px 12px; border-bottom: 1px solid #f1f1f1; color: #444; font-size: 0.95rem; }
+        tr:hover { background: #f9f9f9; }
+        .status-badge { background: #d4edda; color: #155724; padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; }
+        /* جلوگیری از بنفش شدن لینک‌ها */
+.sidebar nav ul li a, 
+.sidebar nav ul li a:visited, 
+.sidebar nav ul li a:hover, 
+.sidebar nav ul li a:active {
+    color: inherit; /* رنگ را از والد خود به ارث ببرد */
+    text-decoration: none; /* حذف خط زیر لینک */
+}
+
+/* استایل مخصوص آیتم فعال (لیست کشاورزان) */
+.sidebar nav ul li.active a {
+    color: white !important; /* حتماً سفید بماند */
+}
+
+/* استایل کلی برای متن‌های منو */
+.sidebar nav ul li {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7); /* رنگ پیش‌فرض متن‌ها */
+}
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">سامانه هاویرکشت</div>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html"><i class="fa fa-th-large"></i> داشبورد</a></li>
+                    <li class="active"><a href="farmers.html"><i class="fa fa-users"></i> لیست کشاورزان</a></li>
+                    <li id="logoutBtn" style="cursor: pointer;"><a><i class="fa fa-sign-out-alt"></i> خروج</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-box">
+                    <i class="fa fa-search"></i>
+                    <input type="text" placeholder="جستجو در لیست کشاورزان...">
+                </div>
+                <div class="user-info" style="display: flex; align-items: center; gap: 10px; background: #f8f9fa; padding: 5px 15px; border-radius: 50px;">
+                    <div style="text-align: left;">
+                        <span id="userName" style="font-weight: bold; color: #2c3e50; display: block; font-size: 14px;">پیمانکار</span>
+                        <small style="color: #7f8c8d; font-size: 10px;">مدیر سیستم</small>
+                    </div>
+                    <span style="font-size: 24px;">👨‍🌾</span> 
+                </div>
+            </header>
+
+            <section class="table-section">
+                <div class="table-card">
+                    <h3>لیست تعهدات کشاورزان</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>نام و نام خانوادگی</th>
+                                <th>کد ملی</th>
+                                <th>شماره تماس</th>
+                                <th>نام پدر</th>
+                                <th>تاریخ ثبت</th>
+                            </tr>
+                        </thead>
+                        <tbody id="farmersTableBody">
+                            <tr>
+                                <td colspan="5" style="text-align: center; padding: 30px;">در حال دریافت اطلاعات از سرور...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="farmers.js"></script>
+</body>
+</html>

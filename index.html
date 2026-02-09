@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>ورود به سامانه هاویرکشت</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: Tahoma, Arial; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .login-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); width: 350px; text-align: center; }
+        .login-card h2 { color: #333; margin-bottom: 30px; }
+        .input-group { position: relative; margin-bottom: 20px; }
+        .input-group i { position: absolute; right: 15px; top: 15px; color: #aaa; }
+        .input-group input { width: 100%; padding: 12px 40px 12px 15px; border: 1px solid #ddd; border-radius: 10px; outline: none; box-sizing: border-box; transition: 0.3s; }
+        .input-group input:focus { border-color: #764ba2; box-shadow: 0 0 8px rgba(118, 75, 162, 0.2); }
+        button { width: 100%; padding: 12px; background: #764ba2; border: none; border-radius: 10px; color: white; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #5a397e; transform: translateY(-2px); }
+        .logo-text { font-size: 24px; font-weight: bold; color: #764ba2; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo-text">هاویرکشت</div>
+        <h2>ورود به پنل مدیریت</h2>
+        <div class="input-group">
+            <i class="fa fa-user"></i>
+            <input type="text" id="username" placeholder="نام کاربری">
+        </div>
+        <div class="input-group">
+            <i class="fa fa-lock"></i>
+            <input type="password" id="password" placeholder="رمز عبور">
+        </div>
+        <button id="loginBtn">ورود به سیستم</button>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

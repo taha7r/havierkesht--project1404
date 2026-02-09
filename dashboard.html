@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سامانه هاویرکشت - داشبورد</title>
+    
+    <link rel="stylesheet" href="Vazirmatn-font-face.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* ۱. فونت یکپارچه */
+        * {
+            font-family: 'Vazirmatn', Tahoma, sans-serif !important;
+        }
+
+        /* ۲. اصلاح چیدمان کل صفحه */
+        body {
+            display: block !important;
+            margin: 0;
+            background-color: #f4f7f6 !important;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        /* ۳. حذف خط زیر تمام لینک‌ها */
+        a {
+            text-decoration: none !important;
+        }
+
+        /* ۴. اصلاح استایل منو برای حذف بنفش و خط زیر */
+        .sidebar nav ul li a {
+            color: inherit !important;
+            text-decoration: none !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* استایل حالت فعال (Active) مشابه صفحه کشاورزان */
+        .sidebar nav ul li.active {
+            background-color: #2c3e50 !important; /* رنگ تیره سازمانی */
+            color: #ffffff !important;
+        }
+
+        .sidebar nav ul li.active a {
+            color: #ffffff !important;
+        }
+
+        /* ۵. کلاس کمکی برای اعداد منفی (اگر در آینده نیاز داشتی) */
+        .text-danger {
+            color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">سامانه هاویرکشت</div>
+            <nav>
+                <ul>
+                    <li class="active clickable">
+                        <a href="dashboard.html">
+                            <i class="fa fa-th-large"></i>
+                            <span>داشبورد</span>
+                        </a>
+                    </li>
+                    <li><i class="fa fa-database"></i> <span>داده‌های اولیه</span></li>
+                    <li><i class="fa fa-user-gear"></i> <span>عملیات پیمانکار</span></li>
+                    <li class="clickable">
+                        <a href="farmers.html">
+                            <i class="fa fa-users"></i>
+                            <span>عملیات کشاورز</span>
+                        </a>
+                    </li>
+                    <li><i class="fa fa-file-invoice"></i> <span>صورتحساب کشاورزان</span></li>
+                    <li><i class="fa fa-chart-line"></i> <span>گزارش‌گیری</span></li>
+                    <li id="logoutBtn" class="clickable">
+                        <i class="fa fa-sign-out-alt"></i>
+                        <span>خروج</span>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-box">
+                    <input type="text" placeholder="جستجو کنید...">
+                </div>
+                <div class="user-info" style="display: flex; align-items: center; gap: 10px; background: #f8f9fa; padding: 5px 15px; border-radius: 50px;">
+                    <div style="text-align: left;">
+                        <span id="userName" style="font-weight: bold; color: #2c3e50; display: block; font-size: 14px;">پیمانکار</span>
+                        <small style="color: #7f8c8d; font-size: 10px;">مدیر سیستم</small>
+                    </div>
+                    <span style="font-size: 24px;">👨‍🌾</span> 
+                </div>
+            </header>
+
+            <section class="stats-grid">
+                <div class="card border-blue">
+                    <div class="card-info">
+                        <p>مانده فعلی در حساب پیمانکار</p>
+                        <h3 id="contractorBalance">۰ <small>تومان</small></h3>
+                    </div>
+                    <i class="fa fa-wallet icon-blue"></i>
+                </div>
+                
+                <div class="card border-green">
+                    <div class="card-info">
+                        <p>جمع پیش‌فاکتورهای تایید شده</p>
+                        <h3 id="approvedInvoices">۰ <small>تومان</small></h3>
+                    </div>
+                    <i class="fa fa-file-invoice-dollar icon-green"></i>
+                </div>
+                <div class="card border-red">
+                    <div class="card-info">
+                        <p>جمع فاکتورهای نهایی شده</p>
+                        <h3 id="finalInvoices">۰ <small>تومان</small></h3>
+                    </div>
+                    <i class="fa fa-check-double icon-red"></i>
+                </div>
+                <div class="card border-orange">
+                    <div class="card-info">
+                        <p>جمع کل مبالغ واریزی کشاورز</p>
+                        <h3 id="farmerPayments">۰ <small>تومان</small></h3>
+                    </div>
+                    <i class="fa fa-hand-holding-usd icon-orange"></i>
+                </div>
+                <div class="card border-darkblue">
+                    <div class="card-info">
+                        <p>جمع کل مبالغ واریزی پیمانکار</p>
+                        <h3 id="contractorPayments">۰ <small>تومان</small></h3>
+                    </div>
+                    <i class="fa fa-university icon-darkblue"></i>
+                </div>
+                <div class="card border-lightgreen">
+                    <div class="card-info">
+                        <p>جمع مبالغ چک‌های سررسید شده</p>
+                        <h3 id="dueCheques">۰ <small>تومان</small></h3>
+                    </div>
+                    <i class="fa fa-money-check icon-lightgreen"></i>
+                </div>
+                <div class="card border-purple">
+                    <div class="card-info">
+                        <p>جمع مبالغ چک‌های پاس شده</p>
+                        <h3 id="clearedCheques">۰ <small>تومان</small></h3>
+                    </div>
+                    <i class="fa fa-check-circle icon-purple"></i>
+                </div>
+                <div class="card border-cyan">
+                    <div class="card-info">
+                        <p>سود بذر پیمانکار</p>
+                        <h3 id="seedProfit">۰ <small>تومان</small></h3>
+                    </div>
+                    <i class="fa fa-seedling icon-cyan"></i>
+                </div>
+                <div class="card border-yellow">
+                    <div class="card-info">
+                        <p>تعداد کل کشاورزان</p>
+                        <h3 id="totalFarmers">۰ <small>نفر</small></h3>
+                    </div>
+                    <i class="fa fa-users icon-yellow"></i>
+                </div>
+                <div class="card border-gray">
+                    <div class="card-info">
+                        <p>سود سم پیمانکار</p>
+                        <h3 id="pesticideProfit">۰ <small>تومان</small></h3>
+                    </div>
+                    <i class="fa fa-flask icon-gray"></i>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>
